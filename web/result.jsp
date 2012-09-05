@@ -9,9 +9,12 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>JSP Page</title>
+        <title>David Pruszka's Computer Store</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <p>Are you sure you want to order:</p>
+        <p><% request.getAttribute("cpu").toString();%></p>
+        <p><% request.getAttribute("ram").toString();%></p>
+        <p><% request.getAttribute("hdd").toString();%></p>
     </body>
 </html>
