@@ -18,7 +18,7 @@
     </head>
     <body>
         
-        <form method="POST" action ="result.jsp">
+        <form method="POST" action ="Servlet2">
             
             <table width="40%" border="1" align="center">
                 <tr>

@@ -12,9 +12,10 @@
         <title>David Pruszka's Computer Store</title>
     </head>
     <body>
+     
         <p>Are you sure you want to order:</p>
-        <p><% request.getAttribute("cpu").toString();%></p>
-        <p><% request.getAttribute("ram").toString();%></p>
-        <p><% request.getAttribute("hdd").toString();%></p>
+        <p><% out.println(request.getAttribute("cpu").toString());%></p>
+        <p><% out.println(request.getAttribute("ram").toString());%></p>
+        <p><% out.println(request.getAttribute("hdd").toString());%></p>
     </body>
 </html>
