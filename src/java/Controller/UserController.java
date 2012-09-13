@@ -2,13 +2,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package resultPackage;
+package Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -17,8 +15,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author JokermanBuilt
  */
-@WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
-public class Servlet2 extends HttpServlet {
+public class UserController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP
@@ -32,18 +29,31 @@ public class Servlet2 extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        response.setContentType("text/html;charset=UTF-8");
         
-        String cpu = request.getParameter("cpu");
-        String ram = request.getParameter("ram");
-        String hdd = request.getParameter("hdd");
-        request.setAttribute("cpu", cpu);
-        request.setAttribute("ram", ram);
-        request.setAttribute("hdd", hdd);
-           
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/result.jsp");
-        dispatcher.forward(request, response);
+        String first = request.getParameter("firstname");
+        String last = request.getParameter("lastname");
+        String email = request.getParameter("email");
+        String street = request.getParameter("street");
+        String city = request.getParameter("city");
+        String state = request.getParameter("state");
+        String zip = request.getParameter("zip");
+        String pNumber = request.getParameter("pnumber");
+        String pwd = request.getParameter("pwd");
+        String address;
         
-    }
+        if(!street.equals("") && !city.equals("") && !state.equals("") && !zip.equals("")){
+           address  = street + "`" + city + "`" + state + "`" + zip;
+        }else{
+           address = null;
+        }
+         
+        if(pNumber.equals("")){
+          pNumber = null;  
+        }
+        
+        
+     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**

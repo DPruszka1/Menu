@@ -12,43 +12,43 @@
         <title>David Pruszka's Computer Store</title>
     </head>
     <body>
-        <form>
-            <table width="60%" border="1" align="center">
+        <form id="userForm" name="userForm" method="POST" action="UserController">
+            <table width="40%" border="0" align="center">
                 <tr>
                     <th colspan="4">Name</th>
                 </tr>
                 <tr>
-                    <td width="25%">First</td>
+                    <td width="25%" align="right">First</td>
                     <td width="25%"><input type="text" name="firstname" /></td>
-                    <td width="25%">Last</td>
-                    <td width="25%">input last</td>
+                    <td width="25%" align="right">Last</td>
+                    <td width="25%"><input type="text" name="lastname" /></td>
                 </tr>
                 <tr>
-                    <th colspan="2">Email (This serves as your login name)</th>
-                    <td colspan="2">input email</td>
+                    <th colspan="2" align="right">Email (This serves as your login name)</th>
+                    <td colspan="2"><input type="text" name="email" /></td>
                 </tr>
                 <tr>
                     <th colspan="4">Address (optional)</th>
                 </tr>
                 <tr>
-                    <td colspan="2">Street</td>
-                    <td colspan="2">input street</td>
+                    <td colspan="2" align="right">Street</td>
+                    <td colspan="2"><input type="text" name="street" /></td>
                 </tr>
                  <tr>
-                    <td colspan="2">City</td>
-                    <td colspan="2">input city</td>
+                    <td colspan="2" align="right">City</td>
+                    <td colspan="2"><input type="text" name="city" /></td>
                 </tr>   
                 <tr>
-                    <td colspan="2">State</td>
-                    <td colspan="2">input state</td>
+                    <td colspan="2" align="right">State</td>
+                    <td colspan="2"><input type="text" name="state" /></td>
                 </tr> 
                 <tr>
-                    <td colspan="2">Zip Code</td>
-                    <td colspan="2">input zip</td>
+                    <td colspan="2" align="right">Zip Code</td>
+                    <td colspan="2"><input type="text" name="zip" /></td>
                 </tr>
                 <tr>
-                    <td colspan="2">Phone Number</td>
-                    <td colspan="2">input phone number</td>
+                    <td colspan="2" align="right">Phone Number (optional)</td>
+                    <td colspan="2"><input type="text" name="pnumber" /></td>
                 </tr>
                 <tr>
                     <th colspan="4">
@@ -56,8 +56,14 @@
                     </th>
                 </tr>
                 <tr>
-                    <td colspan="2">Enter Password</td>
-                    <td colspan="2">input password</td>
+                    <td colspan="2" align="right">Enter Password</td>
+                    <td colspan="2"><input type="text" name="pwd" /></td>
+                </tr>
+                <tr>
+                    <th colspan="4"><input type="submit" value="Submit" /></th>
+                </tr>
+                <tr>
+                    <th style="font-color:red; font-size:30px;"><% out.print(request.getAttribute("info")); %></th>
                 </tr>
             </table>
         </form>
