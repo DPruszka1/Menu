@@ -63,7 +63,14 @@
                     <th colspan="4"><input type="submit" value="Submit" /></th>
                 </tr>
                 <tr>
-                    <th style="font-color:red; font-size:30px;"><% out.print(request.getAttribute("info")); %></th>
+                    <th style="font-color:red; font-size:30px;"><%  
+                    
+                    if(request.getAttribute("info") != null){
+                        out.print(request.getAttribute("info"));
+                    }
+
+
+                    %></th>
                 </tr>
             </table>
         </form>

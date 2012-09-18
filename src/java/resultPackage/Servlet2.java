@@ -20,6 +20,8 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
 public class Servlet2 extends HttpServlet {
 
+    private servlet2Controller sC;
+    
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -39,10 +41,18 @@ public class Servlet2 extends HttpServlet {
         request.setAttribute("cpu", cpu);
         request.setAttribute("ram", ram);
         request.setAttribute("hdd", hdd);
-           
-        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/result.jsp");
-        dispatcher.forward(request, response);
         
+        String order = cpu + "`" + ram + "`" + hdd;
+         System.out.println("--------------------------------------------------------------------\nOrder string created");
+        sC.placeOrder(order);
+        System.out.println("--------------------------------------------------------------------\nALL DONE");
+        //RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/result.jsp");
+        //dispatcher.forward(request, response);
+        
+    }
+    
+    public void init(){
+        sC = new servlet2Controller();
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

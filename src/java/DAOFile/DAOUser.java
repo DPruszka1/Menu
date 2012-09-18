@@ -23,7 +23,7 @@ public class DAOUser {
  
     private DBAccessor db;
     private static final String DRIVER = "com.mysql.jdbc.Driver";
-    private static final String URL = "jdbc:mysql://jokerman.doesnetexist.com:3306/java";
+    private static final String URL = "jdbc:mysql://jokerman.doesnetexist.com:3306";
     private static final String USER = "Jokerman";
     private static final String PWD = "DoubleScreen1";
     
@@ -31,11 +31,11 @@ public class DAOUser {
         db = new DB_Generic();
     }
     
-    public void createUser(String first, String last, Date joinDate, String password, String email, String address, String phoneNumber) throws Exception{
+    public void createNewUser(UserItem user) throws Exception{
        
         String strDate;
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-mm-dd mm:hh:ss");
-        strDate = sdf.format(joinDate);
+        strDate = sdf.format(user.getJoinDate());
         
         List<String> tableHeader = new ArrayList<String>();
         List<String> tableData = new ArrayList<String>();
@@ -46,25 +46,25 @@ public class DAOUser {
         tableHeader.add("email");
         tableHeader.add("password");
         
-        tableData.add(first);
-        tableData.add(last);
+        tableData.add(user.getFirstName());
+        tableData.add(user.getLastName());
         tableData.add(strDate);
-        tableData.add(email);
-        tableData.add(password);
+        tableData.add(user.getEmail());
+        tableData.add(user.getPassword());
         
-        if(address != null){
+        if(user.getAddress() != null){
             tableHeader.add("address");
-            tableData.add(address);
+            tableData.add(user.getAddress());
         }
         
-        if(phoneNumber != null){
+        if(user.getPhoneNumber() != null){
             tableHeader.add("phone_number");
-            tableData.add(phoneNumber);
+            tableData.add(user.getPhoneNumber());
         }
         
         db.openConnection(DRIVER, URL, USER, PWD);
 
-        db.insertRecord("menu_user", tableHeader, tableData, true);
+        db.insertRecord("java.menu_user", tableHeader, tableData, true);
         
 
     } 

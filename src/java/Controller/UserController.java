@@ -4,8 +4,16 @@
  */
 package Controller;
 
+import DAOFile.UserItem;
+import Service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Date;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -17,6 +25,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 public class UserController extends HttpServlet {
 
+    private UserService  userServ;
     /**
      * Processes requests for both HTTP
      * <code>GET</code> and
@@ -30,6 +39,8 @@ public class UserController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+       
+        UserItem user; 
         
         String first = request.getParameter("firstname");
         String last = request.getParameter("lastname");
@@ -52,8 +63,24 @@ public class UserController extends HttpServlet {
           pNumber = null;  
         }
         
+        user = new UserItem(first, last, new Date(), pwd, email, address, pNumber);
+        try {
+            userServ.createNewUser(user);
+        } catch (Exception ex) {
+            Logger.getLogger(UserController.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        request.setAttribute("info", "hello world");
+        
+        RequestDispatcher dispatcher = getServletContext().getRequestDispatcher("/usercreation.jsp");
+        dispatcher.forward(request, response);
         
      }
+    
+    @Override
+    public void init(){
+        userServ = new UserService();
+    }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
