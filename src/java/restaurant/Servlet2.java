@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package resultPackage;
+package restaurant;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -18,7 +18,7 @@ import javax.servlet.http.HttpServletResponse;
  * @author JokermanBuilt
  */
 @WebServlet(name = "Servlet2", urlPatterns = {"/Servlet2"})
-public class Servlet2 extends HttpServlet {
+public class Servlet2 extends HttpServlet {  //this is a controller (got naming messed up)
 
     private servlet2Controller sC;
     
@@ -33,16 +33,16 @@ public class Servlet2 extends HttpServlet {
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+            {
         
         String cpu = request.getParameter("cpu");
         String ram = request.getParameter("ram");
         String hdd = request.getParameter("hdd");
-        request.setAttribute("cpu", cpu);
-        request.setAttribute("ram", ram);
-        request.setAttribute("hdd", hdd);
+        String name = request.getParameter("name");
         
-        String order = cpu + "`" + ram + "`" + hdd;
+        orderObject order;       
+        
+        order = new orderObject(name, cpu, ram, hdd);
          System.out.println("--------------------------------------------------------------------\nOrder string created");
         sC.placeOrder(order);
         System.out.println("--------------------------------------------------------------------\nALL DONE");

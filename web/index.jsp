@@ -70,6 +70,14 @@
                     <td><input type="radio" name="hdd" value="2000" /> 2TB</td>
                 </tr>
             </table>
+            
+            <hr />
+            <table>
+                <tr>
+                    <th>Enter Your Name:</th>
+                    <td><input type="text" name="name" value="Name" /></td>
+                </tr>
+            </table>
             <br>
             <input type="submit" value="Submit" name="submit" />
             

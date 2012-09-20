@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package resultPackage;
+package restaurant;
 
 import db.accessor.DBAccessor;
 import db.accessor.DB_Generic;
@@ -27,7 +27,7 @@ public class servletDAO {
         db = new DB_Generic();
     }
     
-    public void placeOrder(String order){
+    public void placeOrder(orderObject order){
         System.out.println("--------------------------------------------------------------------\nPRE DAO");
         try {
             db.openConnection(DRIVER, URL, USER, PWD);
@@ -36,10 +36,14 @@ public class servletDAO {
             try {
                 List<String> header = new ArrayList<String>();
                 List<String> info = new ArrayList<String>();
-                header.add("Name");
+                header.add("`name`");
+                info.add(order.getName().toString());
                 
-                info.add(order);
-                db.insertRecord("r_order" , info, header, true);
+                String strOrder = order.getCpu() + "!" + order.getRam() + "!" + order.getHdd();
+                header.add("`order`");
+                info.add(strOrder.toString());
+                System.out.println("-------------------------------------------------\n B4 QUarry");
+                db.insertRecord("r_order" , header, info, true);
             } catch (SQLException ex) {
                 Logger.getLogger(servletDAO.class.getName()).log(Level.SEVERE, null, ex);
             } catch (Exception ex) {
